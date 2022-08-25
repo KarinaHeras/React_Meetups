@@ -2,19 +2,8 @@ import classes from './MeetupItems.module.css';
 import Card from '../../UI/Card/Card';
 import {useContext} from 'react';
 import FavoritesContext from '../../../store/favorite-context';
-// import { useFetch} from '../../../util-hooks/useFetch'
 
 function MeetupItem(props) {
-    
-    // const { data } = useFetch({
-    //     url: "/data.json",
-    //   });
-    
-    //   if (!data) return <p>Loading...</p>;
-    //   let [item] = data;
-    
-      
-
     const favoriteContext = useContext(FavoritesContext);
 
     const isItemFavorite = favoriteContext.itemIsFavorite(props.id);
@@ -45,7 +34,7 @@ function MeetupItem(props) {
                 <p>{props.description}</p>
             </div>
             <div className={classes.actions}>
-                <button onClick={toggleFavoriteStatusHandler}>{isItemFavorite?'Remove From Favorite': 'Add to Favorite'}</button>
+                <button data-test="orderModuleHeaderButton" onClick={toggleFavoriteStatusHandler}>{isItemFavorite?'Remove From Favorite': 'Add to Favorite'}</button>
             </div>
         </Card>
        </li>
