@@ -1,7 +1,7 @@
 import Meetups from '../components/Meetups/Meetups';
 import { useEffect, useState } from 'react';
 import Spinner from '../components/UI/Spinner/Spinner';
-
+import classes from '../components/Meetups/Meetups.module.css'
 function AllMeetupsPage() {
     const [data,setData]=useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +31,6 @@ function AllMeetupsPage() {
         });
         
     }, []);
-    console.log(data);
 
     if(isLoading) {
         return (
@@ -43,7 +42,7 @@ function AllMeetupsPage() {
 
     return (
         <section>
-            <h1 style={{textAlign: 'center'}}>All Meetups</h1>
+            <h1 className={classes.title}>All Meetups</h1>
             <ul>
             <Meetups meetups={loadedMeetups} />
             </ul>

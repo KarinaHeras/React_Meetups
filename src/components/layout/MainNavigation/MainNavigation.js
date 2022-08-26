@@ -1,13 +1,28 @@
 import {Link} from 'react-router-dom'
-
+import { useState } from 'react';
 import classes from './MainNavigation.module.css';
 
 import {useContext} from 'react';
 import FavoritesContext from '../../../store/favorite-context';
+
+
 function MainNavigation () {
+
+    const [navbar, setNavbar] = useState(false)
     const favoriteContext = useContext(FavoritesContext)
+    
+    function changeBackground(){
+        if(window.scrollY >= 80){
+            setNavbar(true)
+        }else{
+            setNavbar(false)
+        }
+    }
+    window.addEventListener('scroll', changeBackground);
+
     return (
         <header className={classes.header}>
+           <div className={ navbar ? 'navbar header_bg ' : navbar}></div>
             <div className={classes.logo}>React Meetups</div>
             <nav>
                 <ul>
@@ -25,6 +40,7 @@ function MainNavigation () {
                     </li>
                 </ul>
             </nav>
+            <div/>
         </header>
     );
 }
